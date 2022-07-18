@@ -1,0 +1,307 @@
+@charset "utf-8";
+
+/* 共通・スマートフォン版 */
+html,body {
+  width:100%;
+  min-width: 380px;
+  font-size:16px;
+  line-height:1.5;
+  overflow-x: hidden;
+}
+header{
+  width: 100%;
+  min-width: 380px;
+  height: 50px;
+  background-color: #888;
+  position: fixed;
+  z-index: 100;
+}
+header div.header_inner{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+header div.header_inner h1{
+  font-size: 16px;
+  font-weight: bold;
+  padding:10px;
+  margin-right: auto;
+}
+header div.header_inner p.text1{
+  background-color: rgb(16, 29, 100);
+  color:#fff;
+  width: 80px;
+  height: 30px;
+  padding:5px;
+  margin:10px
+}
+header div.header_inner p.button{
+  width: 40px;
+  height: 40px;
+  background-color: #f00;
+  cursor: pointer;
+  margin:5px;
+  /* バーガーの線をボタン範囲の中心に配置 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 最前面に */
+  z-index: 10;
+}
+
+/***** 真ん中のバーガー線 *****/
+.button_line {
+  /* 線の長さと高さ */
+  width: 80%;
+  height: 3px;
+  /* バーガー線の色 */
+  background-color: #fff;
+  /* バーガー線の位置基準として設定 */
+  position: relative;
+  transition: .2s;
+}
+/***** 上下のバーガー線 *****/
+.button_line::before,
+.button_line::after {
+  content: "";
+  /* 基準線と同じ大きさと色 */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: .2s;
+}
+.button_line::before {
+  /* 上の線の位置 */
+  transform: translateY(-10px);
+}
+.button_line::after {
+  /* 下の線の位置 */
+  transform: translateY(10px);
+}
+/***** メニューオープン時 *****/
+.open .button_line {
+  /* 真ん中の線を透明に */
+  background-color: transparent;
+}
+.open .button_line::before,
+.open .button_line::after {
+  content: "";
+  transition: .2s;
+}
+.open .button_line::before {
+  /* 上の線を傾ける */
+  transform: rotate(45deg);
+}
+.open .button_line::after {
+  /* 上の線を傾ける */
+  transform: rotate(-45deg);
+}
+
+
+header nav{
+  position: absolute;
+  width: 100%;
+  right:-100%;
+  top:50px;
+  transition:
+    right.3s ease-out;
+}
+header nav.open{
+  right:0;
+  transition:
+    right.3s ease-out;
+}
+header nav ul{
+  width: 100%;
+}
+header nav ul li{
+  width: 100%;
+  border-bottom: solid 1px #000;
+  background-color: cornflowerblue;
+  padding:5px;
+}
+header nav ul li a{
+  display: block;
+}
+
+
+main{
+  width: 100%;
+  min-width: 380px;
+  overflow-x: hidden;
+}
+main .main_inner{
+  width: 100%;
+  position: relative;
+}
+main .main_inner nav{
+  display: none;
+}
+
+section{
+  width: 100%;
+  margin:0;
+}
+
+section div.kv{
+  width: 100%;
+  height: 400px;
+  background-color: #ff0;
+  padding: 50px 0 0;
+}
+section div.kv h2{
+  text-align: center;
+}
+#section1{
+  background-color:aquamarine;
+}
+#section2{
+  background-color:blueviolet
+}
+#section3{
+  background-color:chartreuse
+}
+#section4{
+  background-color:darkgoldenrod
+}
+#section5{
+  background-color:hotpink;
+}
+.list1{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+.list1 li{
+  width: 150px;
+  height: 200px;
+  margin:10px;
+  text-align: center;
+  padding:10px;
+  border: solid 1px #666;
+}
+
+footer{
+  width: 100%;
+  min-width: 380px;
+  background-color: #000;
+}
+footer ul{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+footer ul li{
+  margin:10px 0 0;
+  height: 25px;
+  text-align: center;
+}
+
+
+.sp{
+  display: block;
+}
+.tab{
+  display: none;
+}
+.pc{
+  display: none;
+}
+
+/* タブレット版 */
+@media screen and (min-width:768px) {
+  header{
+    background-color: rgb(247, 61, 176);
+  }
+  header nav{
+    width: 400px;
+  }
+  main .main_inner nav{
+    display: block;
+    position: absolute;
+    top:50%;
+    right:10px;
+  }
+  main .main_inner li a{
+    display: block;
+    border: solid 1px #666;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    margin:10px 0;
+  }
+  main .main_inner li a.active{
+    background-color: #00f;
+  }
+  footer{
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+    overflow-x: hidden;
+  }
+  footer ul{
+    width: 100%;
+    height: 50px;
+    flex-direction: row;
+    color: #fff;
+  }
+  footer ul li{
+    margin:10px 0 0 25px;
+    padding:0 0 0 20px;
+    border-left: solid 1px #fff;
+    height: 25px;
+    text-align: left;
+  }
+  footer ul li:first-of-type{
+    border: none;
+    margin-left: 0;
+  }
+
+  .sp{
+    display: none;
+  }
+  .tab{
+    display: block;
+  }
+  .pc{
+    display: none;
+  }
+}
+
+/* パソコン版 */
+@media screen and (min-width:1024px) {
+  header{
+    background-color: rgb(89, 61, 247);
+  }
+  header div.header_inner{
+    width: 1000px;
+    margin:0 auto;
+  }
+  section div.section_inner{
+    width: 1000px;
+    margin:0 auto;
+  }
+  main .main_inner{
+    width: 1000px;
+    margin:0 auto;
+  }
+
+
+
+  .sp{
+    display: none;
+  }
+  .tab{
+    display: none;
+  }
+  .pc{
+    display: block;
+  }
+
+}
